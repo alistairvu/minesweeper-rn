@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { StyleSheet, View, Text, Dimensions } from "react-native"
+import { StyleSheet, View, Text, Dimensions, Vibration } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { loseState } from "../recoil/boardState"
@@ -17,6 +17,7 @@ export const OpenSquare = ({ content }: OpenSquareProps) => {
   useEffect(() => {
     if (content === 9 && closeValue >= 10) {
       setLose(true)
+      Vibration.vibrate()
     }
   }, [])
 
