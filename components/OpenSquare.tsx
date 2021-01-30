@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { StyleSheet, View, Text, Dimensions, Alert } from "react-native"
+import { StyleSheet, View, Text, Dimensions } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { loseState } from "../recoil/boardState"
@@ -15,7 +15,7 @@ export const OpenSquare = ({ content }: OpenSquareProps) => {
   const setLose = useSetRecoilState(loseState)
 
   useEffect(() => {
-    if (content === 9 && closeValue > 10) {
+    if (content === 9 && closeValue >= 10) {
       setLose(true)
     }
   }, [])

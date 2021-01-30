@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Alert, Text, View } from "react-native"
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import { boardState, closedCount, loseState, openState } from "../recoil"
 import { Square } from "./Square"
 
@@ -29,13 +29,29 @@ export const Board = () => {
       }
       setOpen(openAll)
     }
-    if (closeValue === 0) {
+    if (closeValue === 0 && !lose) {
       Alert.alert("You won!")
     }
   }, [closeValue])
 
   useEffect(() => {
     if (lose) {
+      const openAll = (): boolean[][] => {
+        const open = Array(8)
+
+        for (let i = 0; i < 8; i++) {
+          const row = Array(8)
+
+          for (let j = 0; j < 8; j++) {
+            row[j] = true
+          }
+
+          open[i] = row
+        }
+
+        return open
+      }
+      setOpen(openAll)
       Alert.alert("GAME OVER!")
     }
   }, [lose])

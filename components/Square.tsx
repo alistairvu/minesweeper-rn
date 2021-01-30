@@ -1,12 +1,13 @@
 import React, { useState } from "react"
+import { View } from "react-native"
 import { useRecoilState, useRecoilValue } from "recoil"
-import { boardState, openState } from "../recoil"
+import { boardState, openState, loseState } from "../recoil"
 import { flaggedState } from "../recoil/flaggedState"
 import { handleOpen } from "../utils/gameUtils"
 import { ClosedSquare } from "./ClosedSquare"
 import { FlaggedSquare } from "./FlaggedSquare"
 import { OpenSquare } from "./OpenSquare"
-
+import { WrongFlagSquare } from "./WrongFlagSquare"
 interface SquareProps {
   col: number
   row: number
@@ -19,6 +20,7 @@ export const Square = ({ row, col }: SquareProps) => {
   const squareValue = boardValues[row][col]
   const pressed = open[row][col]
   const flagged = flags[row][col]
+  const lose = useRecoilValue(loseState)
 
   const handlePress = () => {
     const newVal = handleOpen(open, boardValues, row, col)
@@ -38,6 +40,10 @@ export const Square = ({ row, col }: SquareProps) => {
     })
 
     setFlags(newVal)
+  }
+
+  if (lose && flagged && squareValue !== 9) {
+    return <WrongFlagSquare />
   }
 
   if (flagged) {
