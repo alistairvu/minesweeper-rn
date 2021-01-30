@@ -1,11 +1,12 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { useRecoilValue } from "recoil"
-import { flagLeftCount } from "../recoil"
+import { flagLeftCount, timerState } from "../recoil"
 import { ResetSquare } from "./ResetSquare"
 
 export const Header = () => {
   const flagsLeft = useRecoilValue(flagLeftCount)
+  const time = useRecoilValue(timerState)
 
   return (
     <View style={styles.container}>
@@ -16,7 +17,7 @@ export const Header = () => {
         <ResetSquare />
       </View>
       <View style={{ ...styles.section, flex: 3 }}>
-        <Text style={styles.text}>EASY</Text>
+        <Text style={styles.text}>{time}</Text>
       </View>
     </View>
   )

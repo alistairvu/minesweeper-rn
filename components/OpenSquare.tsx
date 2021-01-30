@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Dimensions, Vibration } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { loseState } from "../recoil/boardState"
-import { closedCount } from "../recoil"
+import { closedCount, runningState } from "../recoil"
 
 interface OpenSquareProps {
   content: number
@@ -20,12 +20,14 @@ export const OpenSquare = ({ content }: OpenSquareProps) => {
     8
   const closeValue = useRecoilValue(closedCount)
   const setLose = useSetRecoilState(loseState)
+  const setRunning = useSetRecoilState(runningState)
 
   useEffect(() => {
     if (content === 9 && closeValue >= 10) {
       setLose(true)
       Vibration.vibrate()
     }
+    setRunning(true)
   }, [])
 
   const colors = [

@@ -1,57 +1,51 @@
 import React, { useEffect } from "react"
 import { Alert, Text, View } from "react-native"
-import { useRecoilValue, useSetRecoilState } from "recoil"
-import { boardState, closedCount, loseState, openState } from "../recoil"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import {
+  boardState,
+  closedCount,
+  loseState,
+  runningState,
+  timerState,
+} from "../recoil"
+import { useOpenAll } from "../utils/useOpenAll"
 import { Square } from "./Square"
+import useInterval from "use-interval"
 
 export const Board = () => {
+  const [running, setRunning] = useRecoilState(runningState)
+  const setTime = useSetRecoilState(timerState)
   const boardValues = useRecoilValue(boardState)
-  const setOpen = useSetRecoilState(openState)
   const closeValue = useRecoilValue(closedCount)
   const lose = useRecoilValue(loseState)
+  const openAll = useOpenAll()
+
+  useInterval(
+    () => {
+      setTime((prev) => prev + 1)
+    },
+    running ? 1000 : null
+  )
 
   useEffect(() => {
     if (closeValue <= 10 && !lose) {
-      const openAll = (): boolean[][] => {
-        const open = Array(8)
-
-        for (let i = 0; i < 8; i++) {
-          const row = Array(8)
-
-          for (let j = 0; j < 8; j++) {
-            row[j] = true
-          }
-
-          open[i] = row
-        }
-
-        return open
-      }
-      setOpen(openAll)
+      openAll()
     }
     if (closeValue === 0 && !lose) {
+      setRunning(false)
       Alert.alert("You won!")
     }
   }, [closeValue])
 
   useEffect(() => {
     if (lose) {
-      const openAll = (): boolean[][] => {
-        const open = Array(8)
+      setRunning(false)
+    }
+  })
 
-        for (let i = 0; i < 8; i++) {
-          const row = Array(8)
-
-          for (let j = 0; j < 8; j++) {
-            row[j] = true
-          }
-
-          open[i] = row
-        }
-
-        return open
-      }
-      setOpen(openAll)
+  useEffect(() => {
+    if (lose) {
+      openAll()
       Alert.alert("GAME OVER!")
     }
   }, [lose])
