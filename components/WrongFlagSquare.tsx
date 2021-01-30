@@ -3,7 +3,14 @@ import { StyleSheet, View, Text, Dimensions, Alert } from "react-native"
 import { Entypo } from "@expo/vector-icons"
 
 export const WrongFlagSquare = () => {
-  const size = ((Dimensions.get("window").width / 10) * 9) / 8
+  const size =
+    ((Math.min(
+      Dimensions.get("window").width,
+      Dimensions.get("window").height
+    ) /
+      10) *
+      9) /
+    8
 
   return (
     <View

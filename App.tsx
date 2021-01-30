@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar"
 import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { AppRegistry, StyleSheet, Text, View } from "react-native"
 import { RecoilRoot } from "recoil"
 import { Board } from "./components/Board"
 import { Header } from "./components/Header"
@@ -25,3 +25,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 })
+
+AppRegistry.registerComponent("App", () => App)

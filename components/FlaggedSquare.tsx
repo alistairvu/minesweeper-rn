@@ -7,9 +7,16 @@ interface ClosedSquareProps {
 }
 
 export const FlaggedSquare = ({ onLongPress }: ClosedSquareProps) => {
-  const size = ((Dimensions.get("window").width / 10) * 9) / 8
+  const size =
+    ((Math.min(
+      Dimensions.get("window").width,
+      Dimensions.get("window").height
+    ) /
+      10) *
+      9) /
+    8
 
-  useEffect(() => Vibration.vibrate(), [])
+  useEffect(() => Vibration.vibrate([100]), [])
 
   return (
     <Pressable
@@ -26,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "darkgray",
-    backgroundColor: "gray",
+    borderColor: "#a9a9a9",
+    backgroundColor: "#808080",
   },
 })

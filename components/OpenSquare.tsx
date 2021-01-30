@@ -10,7 +10,14 @@ interface OpenSquareProps {
 }
 
 export const OpenSquare = ({ content }: OpenSquareProps) => {
-  const size = ((Dimensions.get("window").width / 10) * 9) / 8
+  const size =
+    ((Math.min(
+      Dimensions.get("window").width,
+      Dimensions.get("window").height
+    ) /
+      10) *
+      9) /
+    8
   const closeValue = useRecoilValue(closedCount)
   const setLose = useSetRecoilState(loseState)
 

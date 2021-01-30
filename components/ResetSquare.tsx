@@ -5,7 +5,14 @@ import { loseState } from "../recoil"
 import { useReset } from "../utils/useReset"
 
 export const ResetSquare = () => {
-  const size = ((Dimensions.get("window").width / 10) * 9) / 8
+  const size =
+    ((Math.min(
+      Dimensions.get("window").width,
+      Dimensions.get("window").height
+    ) /
+      10) *
+      9) /
+    8
   const handleReset = useReset()
   const lose = useRecoilValue(loseState)
 
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "darkgray",
-    backgroundColor: "gray",
+    borderColor: "#a9a9a9",
+    backgroundColor: "#808080",
   },
 })

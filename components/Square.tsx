@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { View } from "react-native"
+import React from "react"
 import { useRecoilState, useRecoilValue } from "recoil"
 import { boardState, openState, loseState } from "../recoil"
 import { flaggedState } from "../recoil/flaggedState"
