@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Add vibrations",
+    "description": "Add timer",
     "githubUrl": "https://github.com/alistairvu/minesweeper-rn"
   }
 }

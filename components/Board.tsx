@@ -33,7 +33,7 @@ export const Board = () => {
     }
     if (closeValue === 0 && !lose) {
       setRunning(false)
-      Alert.alert("You won!")
+      Alert.alert("YOU WIN!")
     }
   }, [closeValue])
 
