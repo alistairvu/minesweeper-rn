@@ -2,14 +2,19 @@ import React, { useEffect } from "react"
 import { StyleSheet, View, Text, Dimensions, Vibration } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useRecoilValue, useSetRecoilState } from "recoil"
-import { loseState } from "../recoil/boardState"
-import { closedCount, runningState } from "../recoil"
+import {
+  closedCount,
+  runningState,
+  loseState,
+  openedSquaresState,
+} from "../recoil"
 
 interface OpenSquareProps {
   content: number
+  code: number
 }
 
-export const OpenSquare = ({ content }: OpenSquareProps) => {
+export const OpenSquare = ({ content, code }: OpenSquareProps) => {
   const size =
     ((Math.min(
       Dimensions.get("window").width,
@@ -19,6 +24,7 @@ export const OpenSquare = ({ content }: OpenSquareProps) => {
       9) /
     8
   const closeValue = useRecoilValue(closedCount)
+  const openedSquares = useRecoilValue(openedSquaresState)
   const setLose = useSetRecoilState(loseState)
   const setRunning = useSetRecoilState(runningState)
 
@@ -47,7 +53,8 @@ export const OpenSquare = ({ content }: OpenSquareProps) => {
         ...styles.container,
         height: size,
         width: size,
-        backgroundColor: content === 9 ? "red" : "#dcdcdc",
+        backgroundColor:
+          content === 9 && openedSquares.has(code) ? "red" : "#dcdcdc",
       }}
     >
       {content !== 9 ? (

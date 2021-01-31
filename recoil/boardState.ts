@@ -10,3 +10,8 @@ export const loseState = atom({
   key: "loseState",
   default: false,
 })
+
+export const openedSquaresState = atom({
+  key: "openedSquaresState",
+  default: new Set<number>(),
+})

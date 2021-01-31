@@ -1,7 +1,12 @@
 import React from "react"
-import { useRecoilState, useRecoilValue } from "recoil"
-import { boardState, openState, loseState } from "../recoil"
-import { flaggedState } from "../recoil/flaggedState"
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
+import {
+  boardState,
+  openState,
+  loseState,
+  flaggedState,
+  openedSquaresState,
+} from "../recoil"
 import { handleOpen } from "../utils/gameUtils"
 import { ClosedSquare } from "./ClosedSquare"
 import { FlaggedSquare } from "./FlaggedSquare"
@@ -16,6 +21,7 @@ export const Square = ({ row, col }: SquareProps) => {
   const boardValues = useRecoilValue(boardState)
   const [open, setOpen] = useRecoilState(openState)
   const [flags, setFlags] = useRecoilState(flaggedState)
+  const setOpenedSquares = useSetRecoilState(openedSquaresState)
   const squareValue = boardValues[row][col]
   const pressed = open[row][col]
   const flagged = flags[row][col]
@@ -24,6 +30,11 @@ export const Square = ({ row, col }: SquareProps) => {
   const handlePress = () => {
     const newVal = handleOpen(open, boardValues, row, col)
     setOpen(newVal)
+    setOpenedSquares((prev) => {
+      const newSet = new Set(prev)
+      newSet.add(row * 8 + col)
+      return newSet
+    })
   }
 
   const handleLongPress = () => {
@@ -50,7 +61,7 @@ export const Square = ({ row, col }: SquareProps) => {
   }
 
   if (pressed) {
-    return <OpenSquare content={squareValue} />
+    return <OpenSquare content={squareValue} code={row * 8 + col} />
   }
 
   return <ClosedSquare onPress={handlePress} onLongPress={handleLongPress} />

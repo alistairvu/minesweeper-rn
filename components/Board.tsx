@@ -22,7 +22,7 @@ export const Board = () => {
 
   useInterval(
     () => {
-      setTime((prev) => prev + 1)
+      setTime((prev) => (prev + 1 > 999 ? 999 : prev + 1))
     },
     running ? 1000 : null
   )

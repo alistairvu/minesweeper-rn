@@ -21,6 +21,11 @@ export const openState = atom({
   default: initOpen(),
 })
 
+export const openedListState = atom({
+  key: "openedListState",
+  default: [] as number[],
+})
+
 export const closedCount = selector({
   key: "closedCount",
   get: ({ get }) => {

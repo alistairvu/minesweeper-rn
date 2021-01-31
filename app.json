@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Add timer",
+    "description": "Polish UI",
     "githubUrl": "https://github.com/alistairvu/minesweeper-rn"
   }
 }
