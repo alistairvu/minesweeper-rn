@@ -9,7 +9,7 @@ import { flaggedState, flagLeftCount } from "./flaggedState"
 import { timerState, runningState } from "./timerState"
 
 export {
-  boardState,
+  boardState as boardState,
   loseState,
   openedSquaresState,
   openState,
