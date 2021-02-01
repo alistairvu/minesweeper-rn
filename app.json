@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Polish UX",
+    "description": "Minesweeper game",
     "githubUrl": "https://github.com/alistairvu/minesweeper-rn"
   }
 }
