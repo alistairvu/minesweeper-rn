@@ -11,6 +11,11 @@ export const loseState = atom({
   default: false,
 })
 
+export const winState = atom({
+  key: "winState",
+  default: false,
+})
+
 export const openedSquaresState = atom({
   key: "openedSquaresState",
   default: new Set<number>(),

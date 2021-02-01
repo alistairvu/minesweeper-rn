@@ -7,6 +7,7 @@ import {
   timerState,
   runningState,
   openedSquaresState,
+  winState,
 } from "../recoil"
 import { generateBoard } from "../utils/boardUtils"
 
@@ -15,6 +16,7 @@ export const useReset = () => {
   const resetOpen = useResetRecoilState(openState)
   const resetFlags = useResetRecoilState(flaggedState)
   const resetLose = useResetRecoilState(loseState)
+  const resetWin = useResetRecoilState(winState)
   const resetTime = useResetRecoilState(timerState)
   const resetRunning = useResetRecoilState(runningState)
   const resetOpenedSquares = useResetRecoilState(openedSquaresState)
@@ -24,6 +26,7 @@ export const useReset = () => {
     resetOpen()
     resetFlags()
     resetLose()
+    resetWin()
     resetTime()
     resetRunning()
     resetOpenedSquares()

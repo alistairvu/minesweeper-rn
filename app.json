@@ -28,7 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": "Polish UI",
+    "description": "Polish UX",
     "githubUrl": "https://github.com/alistairvu/minesweeper-rn"
   }
 }

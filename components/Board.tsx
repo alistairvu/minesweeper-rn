@@ -7,6 +7,7 @@ import {
   loseState,
   runningState,
   timerState,
+  winState,
 } from "../recoil"
 import { useOpenAll } from "../utils/useOpenAll"
 import { Square } from "./Square"
@@ -15,6 +16,7 @@ import useInterval from "use-interval"
 export const Board = () => {
   const [running, setRunning] = useRecoilState(runningState)
   const setTime = useSetRecoilState(timerState)
+  const setWin = useSetRecoilState(winState)
   const boardValues = useRecoilValue(boardState)
   const closeValue = useRecoilValue(closedCount)
   const lose = useRecoilValue(loseState)
@@ -33,6 +35,7 @@ export const Board = () => {
     }
     if (closeValue === 0 && !lose) {
       setRunning(false)
+      setWin(true)
       Alert.alert("YOU WIN!")
     }
   }, [closeValue])

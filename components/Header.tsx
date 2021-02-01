@@ -1,23 +1,35 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { useRecoilValue } from "recoil"
-import { flagLeftCount, timerState } from "../recoil"
+import { flagLeftCount, timerState, winState } from "../recoil"
 import { ResetSquare } from "./ResetSquare"
+import { Ionicons } from "@expo/vector-icons"
 
 export const Header = () => {
   const flagsLeft = useRecoilValue(flagLeftCount)
   const time = useRecoilValue(timerState)
+  const win = useRecoilValue(winState)
 
   return (
     <View style={styles.container}>
       <View style={{ ...styles.section, flex: 3 }}>
-        <Text style={styles.text}>{flagsLeft}</Text>
+        <View style={styles.sectionItem}>
+          <Ionicons name="flag-outline" size={25} color="red" />
+        </View>
+        <View style={styles.sectionItem}>
+          <Text style={styles.text}>{win ? 0 : flagsLeft}</Text>
+        </View>
       </View>
       <View style={{ ...styles.section, flex: 1 }}>
         <ResetSquare />
       </View>
       <View style={{ ...styles.section, flex: 3 }}>
-        <Text style={styles.text}>{time}</Text>
+        <View style={styles.sectionItem}>
+          <Text style={styles.text}>{time}</Text>
+        </View>
+        <View style={styles.sectionItem}>
+          <Ionicons name="timer-outline" size={25} color="blue" />
+        </View>
       </View>
     </View>
   )
@@ -33,6 +45,12 @@ const styles = StyleSheet.create({
   section: {
     alignItems: "center",
     justifyContent: "center",
+    flexDirection: "row",
+  },
+  sectionItem: {
+    alignItems: "center",
+    justifyContent: "center",
+    flex: 1,
   },
   text: {
     fontWeight: "700",
