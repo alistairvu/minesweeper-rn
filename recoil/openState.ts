@@ -16,15 +16,15 @@ const initOpen = (): boolean[][] => {
   return open
 }
 
-export const openState = atom({
-  key: "openState",
+export const openedAtom = atom({
+  key: "opened",
   default: initOpen(),
 })
 
-export const closedCount = selector({
-  key: "closedCount",
+export const closedSelector = selector({
+  key: "closed",
   get: ({ get }) => {
-    const open = get(openState)
+    const open = get(openedAtom)
     let sum = 0
 
     open.forEach(

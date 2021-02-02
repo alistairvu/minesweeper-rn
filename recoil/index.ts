@@ -1,22 +1,17 @@
-import {
-  boardState,
-  loseState,
-  openedSquaresState,
-  winState,
-} from "./boardState"
-import { openState, closedCount } from "./openState"
-import { flaggedState, flagLeftCount } from "./flaggedState"
-import { timerState, runningState } from "./timerState"
+import { boardAtom, loseAtom, selectedSquaresAtom, winAtom } from "./boardState"
+import { openedAtom, closedSelector } from "./openState"
+import { flaggedAtom, flagsLeftSelector } from "./flaggedState"
+import { timerAtom, runningAtom } from "./timerState"
 
 export {
-  boardState as boardState,
-  loseState,
-  openedSquaresState,
-  openState,
-  closedCount,
-  flaggedState,
-  flagLeftCount,
-  timerState,
-  runningState,
-  winState,
+  boardAtom,
+  loseAtom,
+  selectedSquaresAtom,
+  winAtom,
+  openedAtom,
+  closedSelector,
+  flaggedAtom,
+  flagsLeftSelector,
+  timerAtom,
+  runningAtom,
 }

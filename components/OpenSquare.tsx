@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, Dimensions, Vibration } from "react-native"
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import {
-  closedCount,
-  runningState,
-  loseState,
-  openedSquaresState,
+  closedSelector,
+  runningAtom,
+  loseAtom,
+  selectedSquaresAtom,
 } from "../recoil"
 
 interface OpenSquareProps {
@@ -23,10 +23,11 @@ export const OpenSquare = ({ content, code }: OpenSquareProps) => {
       10) *
       9) /
     8
-  const closeValue = useRecoilValue(closedCount)
-  const openedSquares = useRecoilValue(openedSquaresState)
-  const setLose = useSetRecoilState(loseState)
-  const setRunning = useSetRecoilState(runningState)
+
+  const openedSquares = useRecoilValue(selectedSquaresAtom)
+  const closeValue = useRecoilValue(closedSelector)
+  const setLose = useSetRecoilState(loseAtom)
+  const setRunning = useSetRecoilState(runningAtom)
 
   useEffect(() => {
     if (content === 9 && closeValue >= 10) {

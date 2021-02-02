@@ -1,8 +1,8 @@
 import { useSetRecoilState } from "recoil"
-import { openState } from "../recoil"
+import { openedAtom } from "../recoil"
 
 export const useOpenAll = () => {
-  const setOpen = useSetRecoilState(openState)
+  const setOpen = useSetRecoilState(openedAtom)
 
   const openAll = () => {
     const open = Array(8)

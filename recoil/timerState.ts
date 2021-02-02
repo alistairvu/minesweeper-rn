@@ -2,12 +2,12 @@ import { atom } from "recoil"
 
 const initialTime: number = 0
 
-export const timerState = atom({
-  key: "timerState",
+export const timerAtom = atom({
+  key: "timer",
   default: initialTime,
 })
 
-export const runningState = atom({
-  key: "runningState",
+export const runningAtom = atom({
+  key: "running",
   default: false,
 })

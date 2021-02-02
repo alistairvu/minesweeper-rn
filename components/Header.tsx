@@ -1,14 +1,14 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { useRecoilValue } from "recoil"
-import { flagLeftCount, timerState, winState } from "../recoil"
+import { flagsLeftSelector, timerAtom, winAtom } from "../recoil"
 import { ResetSquare } from "./ResetSquare"
 import { Ionicons } from "@expo/vector-icons"
 
 export const Header = () => {
-  const flagsLeft = useRecoilValue(flagLeftCount)
-  const time = useRecoilValue(timerState)
-  const win = useRecoilValue(winState)
+  const time = useRecoilValue(timerAtom)
+  const win = useRecoilValue(winAtom)
+  const flagsLeft = useRecoilValue(flagsLeftSelector)
 
   return (
     <View style={styles.container}>

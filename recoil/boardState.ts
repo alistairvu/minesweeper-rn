@@ -1,22 +1,22 @@
 import { atom, RecoilState } from "recoil"
 import { generateBoard } from "../utils/boardUtils"
 
-export const boardState: RecoilState<number[][]> = atom({
-  key: "boardState",
+export const boardAtom: RecoilState<number[][]> = atom({
+  key: "board",
   default: generateBoard(),
 })
 
-export const loseState = atom({
-  key: "loseState",
+export const loseAtom = atom({
+  key: "lose",
   default: false,
 })
 
-export const winState = atom({
-  key: "winState",
+export const winAtom = atom({
+  key: "win",
   default: false,
 })
 
-export const openedSquaresState = atom({
-  key: "openedSquaresState",
+export const selectedSquaresAtom = atom({
+  key: "selectedSquares",
   default: new Set<number>(),
 })

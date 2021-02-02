@@ -1,11 +1,11 @@
 import React from "react"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import {
-  boardState,
-  openState,
-  loseState,
-  flaggedState,
-  openedSquaresState,
+  boardAtom,
+  openedAtom,
+  loseAtom,
+  flaggedAtom,
+  selectedSquaresAtom,
 } from "../recoil"
 import { handleOpen } from "../utils/gameUtils"
 import { ClosedSquare } from "./ClosedSquare"
@@ -18,14 +18,15 @@ interface SquareProps {
 }
 
 export const Square = ({ row, col }: SquareProps) => {
-  const boardValues = useRecoilValue(boardState)
-  const [open, setOpen] = useRecoilState(openState)
-  const [flags, setFlags] = useRecoilState(flaggedState)
-  const setOpenedSquares = useSetRecoilState(openedSquaresState)
+  const [open, setOpen] = useRecoilState(openedAtom)
+  const [flags, setFlags] = useRecoilState(flaggedAtom)
+  const boardValues = useRecoilValue(boardAtom)
+  const lose = useRecoilValue(loseAtom)
+  const setOpenedSquares = useSetRecoilState(selectedSquaresAtom)
+
   const squareValue = boardValues[row][col]
   const pressed = open[row][col]
   const flagged = flags[row][col]
-  const lose = useRecoilValue(loseState)
 
   const handlePress = () => {
     const newVal = handleOpen(open, boardValues, row, col)

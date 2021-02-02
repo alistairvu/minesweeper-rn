@@ -16,15 +16,15 @@ const initOpen = (): boolean[][] => {
   return open
 }
 
-export const flaggedState = atom({
-  key: "flaggedState",
+export const flaggedAtom = atom({
+  key: "flagged",
   default: initOpen(),
 })
 
-export const flagLeftCount = selector({
-  key: "flagLeftCount",
+export const flagsLeftSelector = selector({
+  key: "flagsLeft",
   get: ({ get }) => {
-    const flagged = get(flaggedState)
+    const flagged = get(flaggedAtom)
     let sum = 0
 
     flagged.forEach(

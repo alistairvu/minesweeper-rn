@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, Dimensions, Pressable, Text } from "react-native"
 import { useRecoilValue } from "recoil"
-import { loseState, winState } from "../recoil"
+import { loseAtom, winAtom } from "../recoil"
 import { useReset } from "../utils/useReset"
 
 export const ResetSquare = () => {
@@ -13,9 +13,10 @@ export const ResetSquare = () => {
       10) *
       9) /
     8
+
+  const lose = useRecoilValue(loseAtom)
+  const win = useRecoilValue(winAtom)
   const handleReset = useReset()
-  const lose = useRecoilValue(loseState)
-  const win = useRecoilValue(winState)
 
   return (
     <Pressable

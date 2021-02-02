@@ -2,24 +2,24 @@ import React, { useEffect } from "react"
 import { Alert, Text, View } from "react-native"
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil"
 import {
-  boardState,
-  closedCount,
-  loseState,
-  runningState,
-  timerState,
-  winState,
+  boardAtom,
+  closedSelector,
+  loseAtom,
+  runningAtom,
+  timerAtom,
+  winAtom,
 } from "../recoil"
 import { useOpenAll } from "../utils/useOpenAll"
 import { Square } from "./Square"
 import useInterval from "use-interval"
 
 export const Board = () => {
-  const [running, setRunning] = useRecoilState(runningState)
-  const setTime = useSetRecoilState(timerState)
-  const setWin = useSetRecoilState(winState)
-  const boardValues = useRecoilValue(boardState)
-  const closeValue = useRecoilValue(closedCount)
-  const lose = useRecoilValue(loseState)
+  const [running, setRunning] = useRecoilState(runningAtom)
+  const setTime = useSetRecoilState(timerAtom)
+  const setWin = useSetRecoilState(winAtom)
+  const boardValues = useRecoilValue(boardAtom)
+  const lose = useRecoilValue(loseAtom)
+  const closeValue = useRecoilValue(closedSelector)
   const openAll = useOpenAll()
 
   useInterval(
