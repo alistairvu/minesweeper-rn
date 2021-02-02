@@ -1,5 +1,5 @@
-import React, { useEffect } from "react"
-import { StyleSheet, Dimensions, Pressable, Vibration } from "react-native"
+import React from "react"
+import { StyleSheet, Dimensions, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
 interface ClosedSquareProps {
@@ -15,8 +15,6 @@ export const FlaggedSquare = ({ onLongPress }: ClosedSquareProps) => {
       10) *
       9) /
     8
-
-  useEffect(() => Vibration.vibrate([100]), [])
 
   return (
     <Pressable

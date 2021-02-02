@@ -10,6 +10,7 @@ import {
   winAtom,
 } from "../recoil"
 import { generateBoard } from "../utils/boardUtils"
+import * as Haptics from "expo-haptics"
 
 export const useReset = () => {
   const setBoardState = useSetRecoilState(boardAtom)
@@ -22,6 +23,7 @@ export const useReset = () => {
   const resetOpenedSquares = useResetRecoilState(selectedSquaresAtom)
 
   const handleReset = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
     setBoardState(generateBoard())
     resetOpen()
     resetFlags()

@@ -12,6 +12,7 @@ import { ClosedSquare } from "./ClosedSquare"
 import { FlaggedSquare } from "./FlaggedSquare"
 import { OpenSquare } from "./OpenSquare"
 import { WrongFlagSquare } from "./WrongFlagSquare"
+import * as Haptics from "expo-haptics"
 interface SquareProps {
   col: number
   row: number
@@ -39,6 +40,7 @@ export const Square = ({ row, col }: SquareProps) => {
   }
 
   const handleLongPress = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
     const oldVal = [...flags]
 
     const newVal = oldVal.map((item, rowIndex) => {
