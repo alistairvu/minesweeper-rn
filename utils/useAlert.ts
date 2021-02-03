@@ -1,4 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { useRecoilValue } from "recoil"
+import { timerAtom } from "../recoil"
 
 interface GameDataInterface {
   won: number
@@ -6,6 +8,26 @@ interface GameDataInterface {
 }
 
 export const useAlert = () => {
+  const time = useRecoilValue(timerAtom)
+
+  const setBestTime = async () => {
+    const bestTimeData = await AsyncStorage.getItem("@best_time")
+    let displayTime: number = time
+
+    if (bestTimeData === null) {
+      await AsyncStorage.setItem("@best_time", time.toString())
+    } else {
+      const bestTime = parseInt(bestTimeData)
+      if (bestTime <= time) {
+        displayTime = bestTime
+      } else {
+        await AsyncStorage.setItem("@best_time", time.toString())
+      }
+    }
+
+    return displayTime
+  }
+
   const winAlert = async () => {
     const mineData = await AsyncStorage.getItem("@mine_data")
 
@@ -15,9 +37,13 @@ export const useAlert = () => {
         lost: 0,
       }
       await AsyncStorage.setItem("@mine_data", JSON.stringify(newData))
+      const displayTime = await setBestTime()
+
       return `Won: 1
 Lost: 0
-Win percent: 100.00%`
+Win percent: 100.00%
+-----*-----
+Best time: ${time}`
     } else {
       const { won, lost } = JSON.parse(mineData)
       const newData: GameDataInterface = {
@@ -26,9 +52,13 @@ Win percent: 100.00%`
       }
       await AsyncStorage.setItem("@mine_data", JSON.stringify(newData))
       const newWinPercent = ((won + 1) / (won + lost + 1)) * 100
+      const displayTime = await setBestTime()
+
       return `Won: ${won + 1}
 Lost: ${lost}
-Win percent: ${newWinPercent.toFixed(2)}%`
+Win percent: ${newWinPercent.toFixed(2)}%
+-----*-----
+Best time: ${time}`
     }
   }
 
