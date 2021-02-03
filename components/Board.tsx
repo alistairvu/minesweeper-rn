@@ -12,6 +12,7 @@ import {
 import { useOpenAll } from "../utils/useOpenAll"
 import { Square } from "./Square"
 import useInterval from "use-interval"
+import { useAlert } from "../utils/useAlert"
 
 export const Board = () => {
   const [running, setRunning] = useRecoilState(runningAtom)
@@ -21,6 +22,7 @@ export const Board = () => {
   const lose = useRecoilValue(loseAtom)
   const closeValue = useRecoilValue(closedSelector)
   const openAll = useOpenAll()
+  const { winAlert, loseAlert } = useAlert()
 
   useInterval(
     () => {
@@ -30,14 +32,18 @@ export const Board = () => {
   )
 
   useEffect(() => {
-    if (closeValue <= 10 && !lose) {
-      openAll()
+    const handleWin = async () => {
+      if (closeValue <= 10 && !lose) {
+        openAll()
+      }
+      if (closeValue === 0 && !lose) {
+        setRunning(false)
+        setWin(true)
+        const winMessage = await winAlert()
+        Alert.alert("YOU WON!!", winMessage)
+      }
     }
-    if (closeValue === 0 && !lose) {
-      setRunning(false)
-      setWin(true)
-      Alert.alert("YOU WIN!")
-    }
+    handleWin()
   }, [closeValue])
 
   useEffect(() => {
@@ -47,9 +53,14 @@ export const Board = () => {
   })
 
   useEffect(() => {
-    if (lose) {
+    const handleLose = async () => {
       openAll()
-      Alert.alert("GAME OVER!")
+      const loseMessage = await loseAlert()
+      Alert.alert("GAME OVER!!", loseMessage)
+    }
+
+    if (lose) {
+      handleLose()
     }
   }, [lose])
 
