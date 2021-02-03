@@ -40,9 +40,9 @@ export const Square = ({ row, col }: SquareProps) => {
   }
 
   const handleLongPress = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
-    const oldVal = [...flags]
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success)
 
+    const oldVal = [...flags]
     const newVal = oldVal.map((item, rowIndex) => {
       if (rowIndex === row) {
         return item.map((square, colIndex) =>
