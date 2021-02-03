@@ -43,7 +43,7 @@ export const useAlert = () => {
 Lost: 0
 Win percent: 100.00%
 -----*-----
-Best time: ${time}`
+Best time:  ${displayTime.toFixed(1)} ${displayTime !== 1 ? "secs" : "sec"}`
     } else {
       const { won, lost } = JSON.parse(mineData)
       const newData: GameDataInterface = {
@@ -58,7 +58,7 @@ Best time: ${time}`
 Lost: ${lost}
 Win percent: ${newWinPercent.toFixed(2)}%
 -----*-----
-Best time: ${time}`
+Best time: ${displayTime.toFixed(1)} ${displayTime !== 1 ? "secs" : "sec"}`
     }
   }
 

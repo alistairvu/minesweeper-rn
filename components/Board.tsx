@@ -26,9 +26,9 @@ export const Board = () => {
 
   useInterval(
     () => {
-      setTime((prev) => (prev + 1 > 999 ? 999 : prev + 1))
+      setTime((prev) => (prev + 1 > 999 ? 999 : prev + 0.1))
     },
-    running ? 1000 : null
+    running ? 100 : null
   )
 
   useEffect(() => {
