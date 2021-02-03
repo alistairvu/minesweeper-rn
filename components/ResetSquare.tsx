@@ -23,7 +23,7 @@ export const ResetSquare = () => {
       style={{ ...styles.container, height: size, width: size }}
       onPress={handleReset}
     >
-      <Text style={{ fontSize: 25 }}>{win ? "🤩" : lose ? "😞" : "😃"}</Text>
+      <Text style={{ fontSize: 25 }}>{win ? "🤩" : lose ? "🤡" : "😃"}</Text>
     </Pressable>
   )
 }
