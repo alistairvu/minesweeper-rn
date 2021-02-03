@@ -25,7 +25,7 @@ export const Header = () => {
       </View>
       <View style={{ ...styles.section, flex: 3 }}>
         <View style={styles.sectionItem}>
-          <Text style={styles.text}>{time.toFixed(0)}</Text>
+          <Text style={styles.text}>{Math.floor(time)}</Text>
         </View>
         <View style={styles.sectionItem}>
           <Ionicons name="timer-outline" size={25} color="blue" />
