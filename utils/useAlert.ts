@@ -17,7 +17,7 @@ export const useAlert = () => {
     if (bestTimeData === null) {
       await AsyncStorage.setItem("@best_time", time.toString())
     } else {
-      const bestTime = parseInt(bestTimeData)
+      const bestTime = +bestTimeData
       if (bestTime <= time) {
         displayTime = bestTime
       } else {
@@ -41,7 +41,7 @@ export const useAlert = () => {
 
       return `Won: 1
 Lost: 0
-Win percent: 100.00%
+Win percentage: 100.00%
 -----*-----
 Best time:  ${displayTime.toFixed(1)} ${displayTime !== 1 ? "secs" : "sec"}`
     } else {
@@ -56,7 +56,7 @@ Best time:  ${displayTime.toFixed(1)} ${displayTime !== 1 ? "secs" : "sec"}`
 
       return `Won: ${won + 1}
 Lost: ${lost}
-Win percent: ${newWinPercent.toFixed(2)}%
+Win percentage: ${newWinPercent.toFixed(2)}%
 -----*-----
 Best time: ${displayTime.toFixed(1)} ${displayTime !== 1 ? "secs" : "sec"}`
     }
